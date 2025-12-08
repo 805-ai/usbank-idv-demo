@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinalBoss Trust | Enterprise Banking IDV Platform</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #38a169;
+            --accent-red: #e53e3e;
+            --bg: #f7fafc;
+            --card: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ed8936;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .header-badges {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-patent {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .badge-live {
+            background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .stat-card h3 {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-value.success {
+            color: var(--accent);
+        }
+
+        .stat-value.highlight {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        .stat-change {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .stat-change.positive {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .stat-change.negative {
+            background: #fed7d7;
+            color: #822727;
+        }
+
+        /* Demo Section */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .demo-card {
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .demo-card-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+        }
+
+        .demo-card-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-danger {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c53030;
+        }
+
+        .btn-success {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Results Display */
+        .result-box {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .result-box pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .result-success {
+            border-left: 4px solid var(--accent);
+        }
+
+        .result-error {
+            border-left: 4px solid var(--accent-red);
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .activity-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.create {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .activity-icon.destroy {
+            background: #fed7d7;
+            color: #822727;
+        }
+
+        .activity-icon.verify {
+            background: #bee3f8;
+            color: #2a4365;
+        }
+
+        .activity-content h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-content p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        /* Latency Display */
+        .latency-display {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .latency-value {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .latency-value.warning {
+            color: var(--warning);
+        }
+
+        .latency-value.danger {
+            color: var(--accent-red);
+        }
+
+        .latency-label {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .sla-badge {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #c6f6d5;
+            color: #22543d;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .sla-badge.violation {
+            background: #fed7d7;
+            color: #822727;
+        }
+
+        /* Patent Info */
+        .patent-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .patent-banner h2 {
+            font-size: 1.2rem;
+        }
+
+        .patent-list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .patent-item {
+            background: rgba(255,255,255,0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        /* Connection Status */
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--card);
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .status-dot.offline {
+            background: var(--accent-red);
+        }
+
+        .status-dot.connecting {
+            background: var(--warning);
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">FB</div>
+            <div class="logo-text">
+                <h1>FinalBoss Trust</h1>
+                <span>Enterprise Banking IDV Platform</span>
+            </div>
+        </div>
+        <div class="header-badges">
+            <span class="badge badge-patent">7 Patents Pending</span>
+            <div class="connection-status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-links">
+            <li><a href="#" class="active">Overview</a></li>
+            <li><a href="#demo">Live Demo</a></li>
+            <li><a href="#activity">Activity</a></li>
+            <li><a href="#compliance">Compliance</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Patent Banner -->
+        <div class="patent-banner">
+            <div>
+                <h2>Patent-Protected Identity Verification Technology</h2>
+                <p>Sub-8ms consent destruction with cryptographic attestation</p>
+            </div>
+            <div class="patent-list">
+                <span class="patent-item">63/885,380</span>
+                <span class="patent-item">63/926,683</span>
+                <span class="patent-item">63/920,993</span>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <h2 class="section-title">System Overview</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Customer Authorizations</h3>
+                <div class="stat-value" id="totalPermits">--</div>
+                <div class="stat-label">Active KYC Tokens</div>
+                <span class="stat-change positive">Live Data</span>
+            </div>
+            <div class="stat-card">
+                <h3>Audit Receipts</h3>
+                <div class="stat-value" id="totalReceipts">--</div>
+                <div class="stat-label">Cryptographic Chain</div>
+                <span class="stat-change positive">100% Verified</span>
+            </div>
+            <div class="stat-card">
+                <h3>Destruction SLA</h3>
+                <div class="stat-value highlight">&lt;8ms</div>
+                <div class="stat-label">Patent 63/885,380</div>
+                <span class="stat-change positive">Guaranteed</span>
+            </div>
+            <div class="stat-card">
+                <h3>Quorum Nodes</h3>
+                <div class="stat-value success" id="quorumNodes">3</div>
+                <div class="stat-label">Distributed Ledger</div>
+                <span class="stat-change positive">All Healthy</span>
+            </div>
+        </div>
+
+        <!-- Live Demo Section -->
+        <h2 class="section-title" id="demo">Live Demo - Banking IDV</h2>
+        <div class="demo-grid">
+            <!-- Create Authorization -->
+            <div class="demo-card">
+                <div class="demo-card-header">
+                    Create Customer Authorization (KYC Token)
+                </div>
+                <div class="demo-card-body">
+                    <div class="form-group">
+                        <label>Customer ID</label>
+                        <input type="text" id="customerId" placeholder="e.g., CUST-2025-001" value="CUST-2025-001">
+                    </div>
+                    <div class="form-group">
+                        <label>Authorization Scope</label>
+                        <select id="authScope">
+                            <option value="account_opening">Account Opening KYC</option>
+                            <option value="wire_transfer">Wire Transfer Authorization</option>
+                            <option value="loan_application">Loan Application</option>
+                            <option value="data_access">Customer Data Access</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Consent Duration</label>
+                        <select id="consentDuration">
+                            <option value="3600">1 Hour</option>
+                            <option value="86400">24 Hours</option>
+                            <option value="604800">7 Days</option>
+                            <option value="2592000">30 Days</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="createAuthBtn" onclick="createAuthorization()">
+                        Issue Authorization Token
+                    </button>
+                    <div class="result-box result-success" id="createResult" style="display:none;">
+                        <pre id="createResultText"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instant Revocation -->
+            <div class="demo-card">
+                <div class="demo-card-header">
+                    Instant Revocation (&lt;8ms SLA)
+                </div>
+                <div class="demo-card-body">
+                    <div class="form-group">
+                        <label>Authorization ID to Revoke</label>
+                        <input type="text" id="revokeId" placeholder="Paste permit ID here">
+                    </div>
+                    <div class="form-group">
+                        <label>Revocation Reason</label>
+                        <select id="revokeReason">
+                            <option value="customer_request">Customer Request (CCPA/GDPR)</option>
+                            <option value="fraud_detected">Fraud Detected</option>
+                            <option value="account_closed">Account Closed</option>
+                            <option value="compliance_action">Compliance Action</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-danger" id="revokeBtn" onclick="revokeAuthorization()">
+                        Execute Instant Revocation
+                    </button>
+
+                    <div id="latencyDisplay" style="display:none;">
+                        <div class="latency-display">
+                            <div class="latency-value" id="latencyValue">--</div>
+                            <div class="latency-label">Destruction Latency</div>
+                            <div class="sla-badge" id="slaBadge">SLA MET</div>
+                        </div>
+                    </div>
+
+                    <div class="result-box" id="revokeResult" style="display:none;">
+                        <pre id="revokeResultText"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <h2 class="section-title" id="activity">Real-Time Activity</h2>
+        <div class="activity-feed">
+            <div class="activity-header">
+                <span>Authorization Events</span>
+                <button class="btn btn-primary" onclick="refreshActivity()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Refresh</button>
+            </div>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                    <div class="activity-icon verify">&#128274;</div>
+                    <div class="activity-content">
+                        <h4>System Ready</h4>
+                        <p>Banking IDV Platform initialized</p>
+                    </div>
+                    <span class="activity-time">Now</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compliance Section -->
+        <h2 class="section-title" id="compliance" style="margin-top: 2rem;">Regulatory Compliance</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>KYC/AML</h3>
+                <div class="stat-value success">&#10004;</div>
+                <div class="stat-label">Real-time identity verification with liveness detection</div>
+            </div>
+            <div class="stat-card">
+                <h3>BSA Compliance</h3>
+                <div class="stat-value success">&#10004;</div>
+                <div class="stat-label">Transaction-level cryptographic audit trail</div>
+            </div>
+            <div class="stat-card">
+                <h3>CCPA/GDPR</h3>
+                <div class="stat-value success">&#10004;</div>
+                <div class="stat-label">Sub-8ms data deletion with attestation</div>
+            </div>
+            <div class="stat-card">
+                <h3>FFIEC</h3>
+                <div class="stat-value success">&#10004;</div>
+                <div class="stat-label">Multi-factor authentication with biometrics</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Final Boss Technology, Inc.</strong> | Patents Pending: 63/865,262, 63/885,380, 63/897,620, 63/926,683, 63/907,140, 63/919,922, 63/920,993</p>
+        <p>CDT Engine v2.1.0 | Epoch: 2025-001 | 805 AI</p>
+    </footer>
+
+    <script>
+        // API Configuration - Auto-detect mode
+        const API_BASE = 'http://localhost:3000';
+        let isConnected = false;
+        let isDemoMode = false;
+        let activityLog = [];
+        let permitCounter = 0;
+        let receiptCounter = 0;
+        const activePermits = new Map();
+
+        // Generate UUID
+        function generateUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        // Generate CDT Hash
+        function generateCdtHash(policy) {
+            const str = JSON.stringify(policy) + Date.now();
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash).toString(16).padStart(64, '0').substring(0, 64);
+        }
+
+        // Simulated API for demo mode
+        const DemoAPI = {
+            async health() {
+                return { status: 'healthy', nodeId: 'demo-node-1', role: 'primary', signatureMode: 'hybrid' };
+            },
+            async createPermit(policy, ttlSeconds) {
+                await new Promise(r => setTimeout(r, 25 + Math.random() * 15)); // Simulate network
+                const permitId = generateUUID();
+                const cdtHash = generateCdtHash(policy);
+                const receiptId = generateUUID();
+                permitCounter++;
+                receiptCounter++;
+                activePermits.set(permitId, { policy, cdtHash, createdAt: new Date() });
+                return {
+                    permitId,
+                    cdtHash,
+                    epoch: Math.floor(Date.now() / 1000),
+                    expiresAt: new Date(Date.now() + ttlSeconds * 1000).toISOString(),
+                    signatures: { ecdsa: 'c14ef236...' + generateUUID().substring(0, 8), mldsa: '6557999b...' + generateUUID().substring(0, 8) },
+                    quorumReached: true,
+                    attestationCount: 3,
+                    receiptId
+                };
+            },
+            async destroyPermit(permitId) {
+                const latency = 0.5 + Math.random() * 1.5; // 0.5-2ms realistic latency
+                await new Promise(r => setTimeout(r, latency + 30)); // Add network overhead
+                activePermits.delete(permitId);
+                receiptCounter++;
+                return {
+                    success: true,
+                    destructionId: generateUUID(),
+                    latencyMs: parseFloat(latency.toFixed(3)),
+                    totalLatencyMs: latency + 30,
+                    slaMet: true,
+                    attestationHash: generateCdtHash({t: Date.now()}),
+                    receiptId: generateUUID(),
+                    quorumAttestations: 3
+                };
+            },
+            async getReceipts() {
+                return { receipts: [], total: receiptCounter };
+            }
+        };
+
+        // Check API connection
+        async function checkConnection() {
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+
+            try {
+                const response = await fetch(`${API_BASE}/health`, { timeout: 2000 });
+                if (response.ok) {
+                    const data = await response.json();
+                    dot.className = 'status-dot';
+                    text.textContent = `Live API - ${data.nodeId}`;
+                    isConnected = true;
+                    isDemoMode = false;
+                    updateStats();
+                    return true;
+                }
+            } catch (e) {
+                // Fall back to demo mode
+                isDemoMode = true;
+                isConnected = true;
+                dot.className = 'status-dot';
+                dot.style.background = '#805ad5'; // Purple for demo
+                text.textContent = 'Demo Mode - Simulated API';
+                updateStats();
+                return true;
+            }
+            return false;
+        }
+
+        // Update statistics
+        async function updateStats() {
+            if (!isConnected) return;
+
+            try {
+                // Get receipts count
+                const receiptsRes = await fetch(`${API_BASE}/api/v1/receipts?limit=1`);
+                if (receiptsRes.ok) {
+                    const data = await receiptsRes.json();
+                    document.getElementById('totalReceipts').textContent = data.total.toLocaleString();
+                }
+            } catch (e) {
+                console.log('Stats update failed:', e);
+            }
+        }
+
+        // Create Authorization
+        async function createAuthorization() {
+            const btn = document.getElementById('createAuthBtn');
+            const resultDiv = document.getElementById('createResult');
+            const resultText = document.getElementById('createResultText');
+
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+
+            const customerId = document.getElementById('customerId').value;
+            const scope = document.getElementById('authScope').value;
+            const ttl = parseInt(document.getElementById('consentDuration').value);
+
+            const policy = {
+                customer_id: customerId,
+                scope: scope,
+                purpose: 'banking_idv',
+                compliance: ['KYC', 'AML', 'BSA']
+            };
+
+            try {
+                let data;
+                if (isDemoMode) {
+                    data = await DemoAPI.createPermit(policy, ttl);
+                } else {
+                    const response = await fetch(`${API_BASE}/api/v1/permits`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            policy,
+                            ttlSeconds: ttl,
+                            context: { consentVerified: true, livenessVerified: true }
+                        })
+                    });
+                    data = await response.json();
+                    if (!response.ok) throw new Error(data.error || 'Request failed');
+                }
+
+                resultDiv.className = 'result-box result-success';
+                resultText.textContent = JSON.stringify({
+                    status: 'SUCCESS',
+                    authorization_id: data.permitId,
+                    cdt_hash: data.cdtHash,
+                    quorum_attestations: data.attestationCount,
+                    expires: data.expiresAt,
+                    receipt_id: data.receiptId
+                }, null, 2);
+
+                // Auto-fill revoke field
+                document.getElementById('revokeId').value = data.permitId;
+
+                // Add to activity
+                addActivity('create', 'Authorization Issued', `Customer: ${customerId} | Scope: ${scope}`);
+
+                // Update stats
+                updateStats();
+                resultDiv.style.display = 'block';
+            } catch (e) {
+                resultDiv.className = 'result-box result-error';
+                resultText.textContent = 'Error: ' + e.message;
+                resultDiv.style.display = 'block';
+            }
+
+            btn.disabled = false;
+            btn.textContent = 'Issue Authorization Token';
+        }
+
+        // Revoke Authorization
+        async function revokeAuthorization() {
+            const btn = document.getElementById('revokeBtn');
+            const resultDiv = document.getElementById('revokeResult');
+            const resultText = document.getElementById('revokeResultText');
+            const latencyDiv = document.getElementById('latencyDisplay');
+            const latencyValue = document.getElementById('latencyValue');
+            const slaBadge = document.getElementById('slaBadge');
+
+            const permitId = document.getElementById('revokeId').value;
+            if (!permitId) {
+                alert('Please enter an Authorization ID to revoke');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Destroying...';
+
+            try {
+                let data;
+                if (isDemoMode) {
+                    data = await DemoAPI.destroyPermit(permitId);
+                } else {
+                    const response = await fetch(`${API_BASE}/api/v1/permits/${permitId}/destroy`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ reason: document.getElementById('revokeReason').value })
+                    });
+                    data = await response.json();
+                    if (!response.ok) throw new Error(data.error || 'Destruction failed');
+                }
+
+                // Show latency
+                const latency = data.latencyMs;
+                latencyValue.textContent = latency.toFixed(3) + 'ms';
+
+                if (latency <= 8) {
+                    latencyValue.className = 'latency-value';
+                    slaBadge.className = 'sla-badge';
+                    slaBadge.textContent = 'SLA MET - Patent 63/885,380';
+                } else {
+                    latencyValue.className = 'latency-value warning';
+                    slaBadge.className = 'sla-badge violation';
+                    slaBadge.textContent = 'SLA EXCEEDED';
+                }
+
+                latencyDiv.style.display = 'block';
+
+                resultDiv.className = 'result-box result-success';
+                resultText.textContent = JSON.stringify({
+                    status: 'DESTROYED',
+                    destruction_id: data.destructionId,
+                    latency_ms: data.latencyMs,
+                    sla_met: data.slaMet,
+                    attestation_hash: data.attestationHash,
+                    quorum_attestations: data.quorumAttestations
+                }, null, 2);
+
+                // Add to activity
+                addActivity('destroy', 'Authorization Revoked', `ID: ${permitId.substring(0, 8)}... | Latency: ${latency.toFixed(3)}ms`);
+
+                // Update stats
+                updateStats();
+                resultDiv.style.display = 'block';
+            } catch (e) {
+                latencyDiv.style.display = 'none';
+                resultDiv.className = 'result-box result-error';
+                resultText.textContent = 'Error: ' + e.message;
+                resultDiv.style.display = 'block';
+            }
+
+            btn.disabled = false;
+            btn.textContent = 'Execute Instant Revocation';
+        }
+
+        // Add activity to feed
+        function addActivity(type, title, description) {
+            const list = document.getElementById('activityList');
+            const icons = {
+                create: { icon: '&#10004;', class: 'create' },
+                destroy: { icon: '&#10006;', class: 'destroy' },
+                verify: { icon: '&#128274;', class: 'verify' }
+            };
+
+            const item = document.createElement('div');
+            item.className = 'activity-item';
+            item.innerHTML = `
+                <div class="activity-icon ${icons[type].class}">${icons[type].icon}</div>
+                <div class="activity-content">
+                    <h4>${title}</h4>
+                    <p>${description}</p>
+                </div>
+                <span class="activity-time">Just now</span>
+            `;
+
+            list.insertBefore(item, list.firstChild);
+
+            // Keep only last 10 items
+            while (list.children.length > 10) {
+                list.removeChild(list.lastChild);
+            }
+        }
+
+        // Refresh activity (get recent receipts)
+        async function refreshActivity() {
+            if (!isConnected) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/receipts?limit=5`);
+                if (response.ok) {
+                    const data = await response.json();
+                    data.receipts.forEach(receipt => {
+                        addActivity(
+                            receipt.action.includes('destroy') ? 'destroy' : 'create',
+                            receipt.action.replace(/_/g, ' ').toUpperCase(),
+                            `Receipt: ${receipt.receiptId.substring(0, 8)}...`
+                        );
+                    });
+                }
+            } catch (e) {
+                console.log('Activity refresh failed:', e);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkConnection();
+            setInterval(checkConnection, 10000);
+            setInterval(updateStats, 30000);
+        });
+    </script>
+</body>
+</html>
